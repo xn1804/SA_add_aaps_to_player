@@ -1,0 +1,18 @@
+{
+  "name": "add-apps-to-device",
+  "version": "1.0.0",
+  "main": "devices_withno_apps.js",
+  "scripts": {
+    "start": "node devices_withno_apps.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Find devices without applications and write to file",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.918.0",
+    "@aws-sdk/lib-dynamodb": "^3.918.0"
+  },
+  "type": "module"
+}
