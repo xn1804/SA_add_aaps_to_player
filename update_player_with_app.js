@@ -10,9 +10,9 @@ const client = new DynamoDBClient({ region: "us-east-1" });
 const ddb = DynamoDBDocumentClient.from(client);
 
 // 2️⃣ Configuration
-const TABLE_NAME = "player.dev.bvcloud.link";
+const TABLE_NAME = "player.sb.bvcloud.link";
 const RECORDS_TO_PROCESS = 10; // Constant variable - change this to process more records
-const DRY_RUN = false; // Set to false to actually update DynamoDB
+const DRY_RUN = true; // Set to false to actually update DynamoDB
 const APP_CHOICE = 2; // Set to 1 for FRESH JUICE - DCX, or 2 for FRESH JUICE - Detect App
 
 // 3️⃣ Available apps to add
@@ -85,11 +85,19 @@ async function processRecords() {
 
   try {
     log("🔍 Starting DRY-RUN: " + (DRY_RUN ? "YES (no updates will be made)" : "NO (updates WILL be made)"));
-    log(`📋 Processing up to ${RECORDS_TO_PROCESS} records from ${TABLE_NAME}\n`);
+    log(`📋 Processing up to ${RECORDS_TO_PROCESS} records from ${TABLE_NAME}`);
+    log(`🔍 Filter: Only records with OS containing "Microsoft"\n`);
 
-    // Scan records
+    // Scan records - only process records where "os" contains "Microsoft"
     const params = {
-      TableName: TABLE_NAME
+      TableName: TABLE_NAME,
+      FilterExpression: "contains(#os, :osValue)",
+      ExpressionAttributeNames: {
+        "#os": "os"
+      },
+      ExpressionAttributeValues: {
+        ":osValue": "Microsoft"
+      }
     };
 
     do {
@@ -105,6 +113,7 @@ async function processRecords() {
           log(`\n--- Record ${recordsProcessed} ---`);
           log(`Login: ${item.login}`);
           log(`Device: ${item.device_name || 'N/A'}`);
+          log(`OS: ${item.os || 'N/A'}`);
 
           let updateNeeded = false;
           let updateExpression = "";
