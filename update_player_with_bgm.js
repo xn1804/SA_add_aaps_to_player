@@ -8,8 +8,8 @@ const client = new DynamoDBClient({ region: "us-east-1" });
 const ddb = DynamoDBDocumentClient.from(client);
 
 // 2️⃣ Configuration
-const TABLE_NAME = "player.dev.bvcloud.link";
-const RECORDS_TO_PROCESS = 5; // Constant variable - change this to process more records
+const TABLE_NAME = "player.sb.bvcloud.link";
+const RECORDS_TO_PROCESS = 500; // Constant variable - change this to process more records
 const DRY_RUN = false; // Set to false to actually update DynamoDB
 
 // 3️⃣ New BGM app data to add

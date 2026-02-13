@@ -8,7 +8,7 @@ const client = new DynamoDBClient({ region: "us-east-1" });
 const ddb = DynamoDBDocumentClient.from(client);
 
 // 2️⃣ Table name and BGM app ID to search for
-const TABLE_NAME = "player.dev.bvcloud.link";
+const TABLE_NAME = "player.sb.bvcloud.link";
 const BGM_APP_ID = "ee167b23-8b61-451a-9561-4b9521b26855";
 
 // 3️⃣ Define scan parameters

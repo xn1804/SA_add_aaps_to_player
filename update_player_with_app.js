@@ -11,8 +11,8 @@ const ddb = DynamoDBDocumentClient.from(client);
 
 // 2️⃣ Configuration
 const TABLE_NAME = "player.sb.bvcloud.link";
-const RECORDS_TO_PROCESS = 10; // Constant variable - change this to process more records
-const DRY_RUN = true; // Set to false to actually update DynamoDB
+const RECORDS_TO_PROCESS = 100; // Constant variable - change this to process more records
+const DRY_RUN = false; // Set to false to actually update DynamoDB
 const APP_CHOICE = 2; // Set to 1 for FRESH JUICE - DCX, or 2 for FRESH JUICE - Detect App
 
 // 3️⃣ Available apps to add
